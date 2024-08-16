@@ -1,0 +1,257 @@
+module glfw;
+
+
+// -------------
+// Types
+// -------------
+def GLFWbool = CInt;
+
+distinct Window = void;
+distinct Monitor = void;
+
+
+const CInt CONTEXT_VERSION_MAJOR = 0x00022002;
+const CInt CONTEXT_VERSION_MINOR = 0x00022003;
+
+distinct WindowHint = CInt;
+const WindowHint RESIZABLE = 0x00020003;
+const WindowHint VISIBLE = 0x00020004;
+const WindowHint DECORATED = 0x00020005;
+const WindowHint FOCUSED = 0x00020001;
+const WindowHint AUTO_ICONIFY = 0x00020006;
+const WindowHint FLOATING = 0x00020007;
+const WindowHint MAXIMIZED = 0x00020008;
+const WindowHint GLFW_CENTER_CURSOR = 0x00020009;
+const WindowHint GLFW_TRANSPARENT_FRAMEBUFFER = 0x0002000A;
+const WindowHint GLFW_HOVERED = 0x0002000B;
+const WindowHint GLFW_FOCUS_ON_SHOW = 0x0002000C;
+ 
+
+// -------------
+// Function types
+// -------------
+def Errorfun = fn void(CInt error_code, ZString description); 
+def Keyfun = fn void(Window* window, glfw::key::Key key, CInt scancode, glfw::key::Action action, CInt mods);
+
+def Glproc = fn void();
+
+// -------------
+// Functions
+// -------------
+
+// int glfwInit (void)
+extern fn CInt init() @extern("glfwInit");
+
+// void glfwTerminate (void)
+extern fn void terminate() @extern("glfwTerminate");
+
+// GLFWerrorfun glfwSetErrorCallback (GLFWerrorfun callback)
+extern fn Errorfun set_error_callback(Errorfun callback) @extern("glfwSetErrorCallback"); 
+
+// GLFWwindow * glfwCreateWindow (int width, int height, const char* title, GLFWmonitor *  monitor, GLFWwindow * share)
+extern fn Window* create_window(CInt width, CInt height, ZString title, Monitor* monitor, Window* share) @extern("glfwCreateWindow");
+
+// void glfwDestroyWindow 	( 	GLFWwindow *  	window	)
+extern fn void destroy_window(Window* window) @extern("glfwDestroyWindow");
+
+// void glfwWindowHint (int hint, int value)
+extern fn void window_hint(WindowHint hint, CInt value) @extern("glfwWindowHint");
+
+// void glfwMakeContextCurrent 	( 	GLFWwindow *  	window	)
+extern fn void make_context_current(Window* window) @extern("glfwMakeContextCurrent");
+
+// GLproc glfwGetProcAddress 	( 	const char *  	procname	) 	
+extern fn Glproc get_proc_address(ZString procname) @extern("glfwGetProcAddress");
+
+// int glfwWindowShouldClose(GLFWwindow* window);
+extern fn CInt window_should_close(Window* window) @extern("glfwWindowShouldClose");
+
+// void glfwSetWindowShouldClose(GLFWwindow* window, int value);
+extern fn void set_window_should_close(Window* window, GLFWbool value) @extern("glfwSetWindowShouldClose");
+
+// GLFWkeyfun glfwSetKeyCallback(GLFWwindow* window, GLFWkeyfun callback);
+extern fn Keyfun set_key_callback(Window* window, Keyfun callback) @extern("glfwSetKeyCallback");
+
+// void glfwSwapBuffers(GLFWwindow* window);
+extern fn void swap_buffers(Window* window) @extern("glfwSwapBuffers");
+
+// double glfwGetTime(void);
+extern fn double get_time() @extern("glfwGetTime");
+
+// void glfwGetFramebufferSize(GLFWwindow* window, int* width, int* height);
+extern fn void get_framebuffer_size(Window* window, CInt* width, CInt* height) @extern("glfwGetFramebufferSize");
+
+// void glfwPollEvents(void);
+extern fn void poll_events() @extern("glfwPollEvents");
+
+
+
+
+module gl;
+
+// -------------
+// Types
+// -------------
+distinct GLbitfield = CUInt;
+const GLbitfield COLOR_BUFFER_BIT = 0x00004000;
+
+
+// -------------
+// Functions
+// -------------
+
+// void glDrawPixels(GLsizei width, GLsizei height, GLenum format, GLenum type, const void * data);
+extern fn void draw_pixels(CInt width, CInt height, CInt format, CInt type, void* data) @extern("glDrawPixels");
+
+// void glClear( 	GLbitfield mask);
+extern fn void clear(GLbitfield mask) @extern("glClear");
+
+// void GL_APIENTRY glClearColor (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha);
+extern fn void clear_color(float red, float green, float blue, float alpha) @extern("glClearColor");
+
+
+
+
+
+
+module glfw::key;
+
+// -------------
+// Types
+// -------------
+
+distinct Action = CInt;
+
+const Action RELEASE = 0;
+const Action PRESS = 1;
+const Action REPEAT = 2;
+
+
+
+distinct Key = CInt;
+
+const Key SPACE               = 32;
+const Key APOSTROPHE          = 39;  /* ' */
+const Key COMMA               = 44;  /* , */
+const Key MINUS               = 45;  /* - */
+const Key PERIOD              = 46;  /* . */
+const Key SLASH               = 47;  /* / */
+const Key N0                  = 48;
+const Key N1                  = 49;
+const Key N2                  = 50;
+const Key N3                  = 51;
+const Key N4                  = 52;
+const Key N5                  = 53;
+const Key N6                  = 54;
+const Key N7                  = 55;
+const Key N8                  = 56;
+const Key N9                  = 57;
+const Key SEMICOLON           = 59;  /* ; */
+const Key EQUAL               = 61;  /* = */
+const Key A                   = 65;
+const Key B                   = 66;
+const Key C                   = 67;
+const Key D                   = 68;
+const Key E                   = 69;
+const Key F                   = 70;
+const Key G                   = 71;
+const Key H                   = 72;
+const Key I                   = 73;
+const Key J                   = 74;
+const Key K                   = 75;
+const Key L                   = 76;
+const Key M                   = 77;
+const Key N                   = 78;
+const Key O                   = 79;
+const Key P                   = 80;
+const Key Q                   = 81;
+const Key R                   = 82;
+const Key S                   = 83;
+const Key T                   = 84;
+const Key U                   = 85;
+const Key V                   = 86;
+const Key W                   = 87;
+const Key X                   = 88;
+const Key Y                   = 89;
+const Key Z                   = 90;
+const Key LEFT_BRACKET        = 91;  /* [ */
+const Key BACKSLASH           = 92;  /* \ */
+const Key RIGHT_BRACKET       = 93;  /* ] */
+const Key GRAVE_ACCENT        = 96;  /* ` */
+const Key WORLD_1             = 161; /* non-US #1 */
+const Key WORLD_2             = 162; /* non-US #2 */
+
+/* Function keys */
+const Key ESCAPE              = 256;
+const Key ENTER               = 257;
+const Key TAB                 = 258;
+const Key BACKSPACE           = 259;
+const Key INSERT              = 260;
+const Key DELETE              = 261;
+const Key RIGHT               = 262;
+const Key LEFT                = 263;
+const Key DOWN                = 264;
+const Key UP                  = 265;
+const Key PAGE_UP             = 266;
+const Key PAGE_DOWN           = 267;
+const Key HOME                = 268;
+const Key END                 = 269;
+const Key CAPS_LOCK           = 280;
+const Key SCROLL_LOCK         = 281;
+const Key NUM_LOCK            = 282;
+const Key PRINT_SCREEN        = 283;
+const Key PAUSE               = 284;
+const Key F1                  = 290;
+const Key F2                  = 291;
+const Key F3                  = 292;
+const Key F4                  = 293;
+const Key F5                  = 294;
+const Key F6                  = 295;
+const Key F7                  = 296;
+const Key F8                  = 297;
+const Key F9                  = 298;
+const Key F10                 = 299;
+const Key F11                 = 300;
+const Key F12                 = 301;
+const Key F13                 = 302;
+const Key F14                 = 303;
+const Key F15                 = 304;
+const Key F16                 = 305;
+const Key F17                 = 306;
+const Key F18                 = 307;
+const Key F19                 = 308;
+const Key F20                 = 309;
+const Key F21                 = 310;
+const Key F22                 = 311;
+const Key F23                 = 312;
+const Key F24                 = 313;
+const Key F25                 = 314;
+const Key KP_0                = 320;
+const Key KP_1                = 321;
+const Key KP_2                = 322;
+const Key KP_3                = 323;
+const Key KP_4                = 324;
+const Key KP_5                = 325;
+const Key KP_6                = 326;
+const Key KP_7                = 327;
+const Key KP_8                = 328;
+const Key KP_9                = 329;
+const Key KP_DECIMAL          = 330;
+const Key KP_DIVIDE           = 331;
+const Key KP_MULTIPLY         = 332;
+const Key KP_SUBTRACT         = 333;
+const Key KP_ADD              = 334;
+const Key KP_ENTER            = 335;
+const Key KP_EQUAL            = 336;
+const Key LEFT_SHIFT          = 340;
+const Key LEFT_CONTROL        = 341;
+const Key LEFT_ALT            = 342;
+const Key LEFT_SUPER          = 343;
+const Key RIGHT_SHIFT         = 344;
+const Key RIGHT_CONTROL       = 345;
+const Key RIGHT_ALT           = 346;
+const Key RIGHT_SUPER         = 347;
+const Key MENU                = 348;
+
+
+

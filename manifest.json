@@ -1,0 +1,37 @@
+{
+  "provides" : "glfw",
+  "targets" : {
+    "linux-x64" : {
+      // Extra flags to the linker for this target:
+      "link-args" : [],
+      // C3 libraries this target depends on:
+      "dependencies" : [],
+      // The external libraries to link for this target:
+      "linked-libraries" : []
+    },
+    "macos-aarch64" : {
+      // Extra flags to the linker for this target:
+      "link-args" : [],
+      // C3 libraries this target depends on:
+      "dependencies" : [],
+      // The external libraries to link for this target:
+      "linked-libraries" : []
+    },
+    "macos-x64" : {
+      // Extra flags to the linker for this target:
+      "link-args" : [],
+      // C3 libraries this target depends on:
+      "dependencies" : [],
+      // The external libraries to link for this target:
+      "linked-libraries" : []
+    },
+    "windows-x64" : {
+      // Extra flags to the linker for this target:
+      "link-args" : [],
+      // C3 libraries this target depends on:
+      "dependencies" : [],
+      // The external libraries to link for this target:
+      "linked-libraries" : [ "glfw3", "winmm", "gdi32", "opengl32" ]
+    },
+  }
+}
