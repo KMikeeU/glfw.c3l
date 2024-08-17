@@ -84,7 +84,11 @@ extern fn void get_framebuffer_size(Window* window, CInt* width, CInt* height) @
 // void glfwPollEvents(void);
 extern fn void poll_events() @extern("glfwPollEvents");
 
+// void 	glfwSetWindowUserPointer (GLFWwindow *window, void *pointer)
+extern fn void set_window_user_pointer(Window* window, void* pointer) @extern("glfwSetWindowUserPointer");
 
+// void* 	glfwGetWindowUserPointer (GLFWwindow *window)
+extern fn void* get_window_user_pointer(Window* window) @extern("glfwGetWindowUserPointer");
 
 
 module gl;
@@ -102,6 +106,12 @@ const GLbitfield COLOR_BUFFER_BIT = 0x00004000;
 
 // void glDrawPixels(GLsizei width, GLsizei height, GLenum format, GLenum type, const void * data);
 extern fn void draw_pixels(CInt width, CInt height, CInt format, CInt type, void* data) @extern("glDrawPixels");
+
+// void glPixelZoom(	GLfloat xfactor, GLfloat yfactor);
+extern fn void pixel_zoom(float xfactor, float yfactor) @extern("glPixelZoom");
+
+// void glRasterPos2f(GLfloat xpos, GLfloat ypos);
+extern fn void raster_pos_2f(float x, float y) @extern("glRasterPos2f");
 
 // void glClear( 	GLbitfield mask);
 extern fn void clear(GLbitfield mask) @extern("glClear");
